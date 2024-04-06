@@ -1,0 +1,7 @@
+@import "./assets/scss/variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "./assets/scss/app";
+
+.dropdown-toggle::after {
+  display: none;
+}
