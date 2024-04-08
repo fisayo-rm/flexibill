@@ -3,7 +3,7 @@ import "./App.scss";
 
 function App() {
   return (
-    <div className="min-vh-100">
+    <div className="min-vh-50">
       <Dashboard />
     </div>
   );
