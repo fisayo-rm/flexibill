@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
-import EmptyState from "./EmptyState";
+import InvoicesList from "./InvoicesList";
 
 function Invoices() {
   const isStorageLocal = useMemo(() => {
@@ -38,7 +38,7 @@ function Invoices() {
       </div>
       <div className="row">
         <div className="col-12">
-          <EmptyState content="Nothing here yet" />
+          <InvoicesList />
         </div>
       </div>
     </div>
