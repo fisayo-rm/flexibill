@@ -1,11 +1,18 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
 import InvoicesList from "./InvoicesList";
+import { useAddInvoices, useInvoices } from "./hooks";
 
 function Invoices() {
+  const addInvoice = useAddInvoices();
+  const invoices = useInvoices();
   const isStorageLocal = useMemo(() => {
     return true;
   }, []);
+
+  useEffect(() => {
+    console.log("INVOICES", invoices);
+  }, [invoices]);
   return (
     <div>
       <div className="row">
@@ -13,7 +20,8 @@ function Invoices() {
           <h4 className="mb-0">Invoices</h4>
           <div>
             <button
-              onClick={() => console.log("Create new invoice")}
+              // onClick={() => console.log("Create new invoice")}
+              onClick={addInvoice}
               className={`btn btn-sm btn-outline-dark ${isStorageLocal ? "" : "mr-3"}`}
             >
               New Invoice
