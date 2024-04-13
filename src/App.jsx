@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />}>
           <Route path="/invoices" element={<Invoices />} />
-          <Route path="/invoice" element={<Invoice />} />
+          <Route path="/invoice/:id" element={<Invoice />} />
         </Route>
       </Routes>
     </div>

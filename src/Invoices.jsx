@@ -1,14 +1,21 @@
-import { useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
 import InvoicesList from "./InvoicesList";
 import { useAddInvoices, useInvoices } from "./hooks";
+import { useNavigate } from "react-router-dom";
 
 function Invoices() {
+  const navigate = useNavigate();
   const addInvoice = useAddInvoices();
   const invoices = useInvoices();
   const isStorageLocal = useMemo(() => {
     return true;
   }, []);
+
+  const createNewInvoice = useCallback(() => {
+    const newInvoice = addInvoice();
+    navigate(`/invoice/${newInvoice.id}`);
+  }, [addInvoice, navigate]);
 
   useEffect(() => {
     console.log("INVOICES", invoices);
@@ -20,8 +27,7 @@ function Invoices() {
           <h4 className="mb-0">Invoices</h4>
           <div>
             <button
-              // onClick={() => console.log("Create new invoice")}
-              onClick={addInvoice}
+              onClick={() => createNewInvoice()}
               className={`btn btn-sm btn-outline-dark ${isStorageLocal ? "" : "mr-3"}`}
             >
               New Invoice

@@ -1,12 +1,15 @@
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import { useEffect } from "react";
 
 function Dashboard() {
   const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
-    navigate("/invoices");
-  }, [navigate]);
+    if (location.pathname === "/") {
+      navigate("/invoices");
+    }
+  }, [navigate, location]);
 
   return (
     <div>

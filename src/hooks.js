@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { ORMContext } from "./ORMProvider";
+import { ORMContext } from "./ORMContext";
 import orm from "./models";
+import dayjs from "dayjs";
 
 export const useORM = () => {
   const context = useContext(ORMContext);
@@ -17,6 +18,26 @@ export const useInvoices = () => {
 };
 
 export const useAddInvoices = () => {
-  const { dispatch } = useORM();
-  return (invoice) => dispatch({ type: "ADD_INVOICE", payload: invoice });
+  const { state, setState } = useORM();
+
+  return () => {
+    const invoice = {
+      issuedAt: dayjs().format("YYYY-MM-DD"),
+      dueAt: dayjs().format("YYYY-MM-DD"),
+      invoiceNumber: "Invoice-01",
+      lateFee: "N/A",
+      currency: "USD",
+    };
+    const session = orm.session(state);
+    const newInvoice = session.Invoice.create(invoice);
+    setState(session.state);
+    return newInvoice.ref;
+  };
+};
+
+export const useInvoiceById = (id) => {
+  const { state } = useORM();
+  const session = orm.session(state);
+  const invoice = session.Invoice.withId(id);
+  return invoice;
 };
