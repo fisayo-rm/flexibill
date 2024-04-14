@@ -1,6 +1,7 @@
 import Select from "react-select";
 
 import PropTypes from "prop-types";
+import AppError from "./components/AppError";
 
 function AppSelect({
   errors,
@@ -74,9 +75,7 @@ function AppSelect({
         isDisabled={isDisabled}
         classNamePrefix="react-select"
       />
-      {errors && errors[fieldName] && (
-        <div className="error">{errors[fieldName]}</div>
-      )}
+      {errors && <AppError errors={errors} field={fieldName} />}
     </div>
   );
 }
