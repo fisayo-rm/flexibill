@@ -6,7 +6,7 @@ function Invoice() {
   const { id } = useParams();
   const invoice = useInvoiceById(id);
 
-  return <InvoiceControls invoice={invoice} />;
+  return <InvoiceControls className="d-print-none" invoice={invoice} />;
 }
 
 export default Invoice;

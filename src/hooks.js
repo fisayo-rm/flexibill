@@ -41,3 +41,17 @@ export const useInvoiceById = (id) => {
   const invoice = session.Invoice.withId(id);
   return invoice;
 };
+
+export const useUpdateInvoice = () => {
+  const { state, setState } = useORM();
+
+  return (id, data) => {
+    const session = orm.session(state);
+    const invoice = session.Invoice.withId(id);
+    if (!invoice) {
+      throw new Error(`Invoice with id ${id} not found`);
+    }
+    invoice.update(data);
+    setState(session.state);
+  };
+};

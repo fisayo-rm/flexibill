@@ -10,6 +10,7 @@ Invoice.fields = {
   invoiceNumber: attr({ getDefault: () => "" }),
   lateFee: attr({ getDefault: () => "" }),
   currency: attr({ getDefault: () => "" }),
+  status: attr({ getDefault: () => "draft" }),
 };
 
 export default Invoice;
