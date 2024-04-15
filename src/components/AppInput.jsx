@@ -19,7 +19,8 @@ export default function AppInput({
   autocomplete = "on",
   children,
   onChange,
-  onSubmit,
+  className,
+  //   onSubmit,
 }) {
   //   const inputRef = useRef();
 
@@ -33,15 +34,19 @@ export default function AppInput({
     }
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && onSubmit) {
-      onSubmit(e.target.value);
-    }
-  };
+  //   const handleKeyDown = (e) => {
+  //     if (e.key === "Enter" && onSubmit) {
+  //       onSubmit(e.target.value);
+  //     }
+  //   };
   return (
-    <div className="form-group">
+    <div className={`form-group mb-3 ${className}`}>
       {label && (
-        <label htmlFor={field} className={labelClasses}>
+        <label
+          htmlFor={field}
+          className={labelClasses}
+          style={{ marginBottom: "0.5rem" }}
+        >
           {label}
         </label>
       )}
@@ -55,7 +60,7 @@ export default function AppInput({
           autoComplete={autocomplete}
           maxLength={max}
           onChange={handleInput}
-          onKeyDown={handleKeyDown}
+          //   onKeyDown={handleKeyDown}
           value={value}
         />
         {children}
@@ -76,6 +81,7 @@ AppInput.propTypes = {
   placeholder: PropTypes.string,
   size: PropTypes.string,
   labelClasses: PropTypes.string,
+  className: PropTypes.string,
   inputClasses: PropTypes.array,
   containerClasses: PropTypes.string,
   autocomplete: PropTypes.string,

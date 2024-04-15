@@ -78,7 +78,6 @@ function InvoiceControls({ invoice }) {
             labelField="name"
             // onInputChange={(e) => console.log("input change", e)}
             onChange={(e) => updateInvoice(invoice.id, { status: e.value })}
-            errors={{}}
             placeholder={"Select option"}
           />
           {invoice.status === "draft" && (

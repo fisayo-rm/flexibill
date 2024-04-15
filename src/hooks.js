@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useCallback, useState } from "react";
 import { ORMContext } from "./ORMContext";
 import orm from "./models";
 import dayjs from "dayjs";
@@ -54,4 +54,34 @@ export const useUpdateInvoice = () => {
     invoice.update(data);
     setState(session.state);
   };
+};
+
+export const useErrors = (initialErrors = {}) => {
+  const [errors, setErrors] = useState(initialErrors);
+
+  const errorManager = {
+    set: useCallback((newErrors) => {
+      setErrors(newErrors);
+    }, []),
+
+    get: useCallback(
+      (field) => {
+        return errors[field] || null;
+      },
+      [errors],
+    ),
+
+    has: useCallback(
+      (field) => {
+        return Object.prototype.hasOwnProperty.call(errors, field);
+      },
+      [errors],
+    ),
+
+    clear: useCallback(() => {
+      setErrors({});
+    }, []),
+  };
+
+  return errorManager;
 };

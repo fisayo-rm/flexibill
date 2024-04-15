@@ -81,7 +81,7 @@ function AppSelect({
 }
 
 AppSelect.propTypes = {
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.object,
   label: PropTypes.string,
   value: PropTypes.any,
   fieldName: PropTypes.string,
