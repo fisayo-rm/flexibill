@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
 import InvoicesList from "./InvoicesList";
 import { useAddInvoices, useInvoices } from "./hooks";
@@ -17,9 +17,6 @@ function Invoices() {
     navigate(`/invoice/${newInvoice.id}`);
   }, [addInvoice, navigate]);
 
-  useEffect(() => {
-    console.log("INVOICES", invoices);
-  }, [invoices]);
   return (
     <div>
       <div className="row">
@@ -52,7 +49,7 @@ function Invoices() {
       </div>
       <div className="row">
         <div className="col-12">
-          <InvoicesList />
+          <InvoicesList invoices={invoices} />
         </div>
       </div>
     </div>
