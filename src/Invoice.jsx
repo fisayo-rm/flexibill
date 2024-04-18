@@ -7,6 +7,10 @@ function Invoice() {
   const { id } = useParams();
   const invoice = useInvoiceById(id);
 
+  if (!invoice) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <InvoiceControls className="d-print-none" invoice={invoice} />
