@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import PropTypes from "prop-types";
 
-export default function TeamLogo({ errors }) {
+export default function TeamLogo({ errors, className }) {
   const team = false;
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -24,17 +24,35 @@ export default function TeamLogo({ errors }) {
     setIsModalOpen(true);
   };
   return (
-    <div>
+    <div className={className}>
       {team ? (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
         <img
           onClick={openModal}
           src=""
           alt=""
           className="pointer"
           style={{ width: "100%", maxWidth: "200px" }}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              openModal();
+            }
+          }}
         />
       ) : (
+        // <button
+        //   onClick={openModal}
+        //   className="pointer"
+        //   style={{
+        //     width: "100%",
+        //     maxWidth: "200px",
+        //     border: "none",
+        //     padding: 0,
+        //     background: "none",
+        //   }}
+        // >
+        //   <img src="" alt="" style={{ width: "100%", maxWidth: "200px" }} />
+        // </button>
         <button className="btn btn-sm" onClick={openModal}>
           <i className="material-icons material-icons-round md-36">
             file_upload
@@ -74,4 +92,5 @@ export default function TeamLogo({ errors }) {
 
 TeamLogo.propTypes = {
   errors: PropTypes.object.isRequired,
+  className: PropTypes.string.isRequired,
 };

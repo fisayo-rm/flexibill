@@ -14,7 +14,6 @@ export default function AppFileInput({
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
-    console.log("FILE", file);
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
