@@ -2,14 +2,14 @@
   &--card {
     background-color: var(--dp02);
     border-radius: $card-border-radius;
-    box-shadow: $box-shadow-light-1;
+    // box-shadow: $box-shadow-light-1;
   }
 
   thead {
     th {
       padding-top: 1.5em;
-      padding-bottom: .75em;
-      font-size: .875rem;
+      padding-bottom: 0.75em;
+      font-size: 0.875rem;
       border-top-color: transparent;
       border-bottom-width: 1px;
     }

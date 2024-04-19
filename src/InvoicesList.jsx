@@ -2,14 +2,20 @@ import EmptyState from "./EmptyState";
 
 import PropTypes from "prop-types";
 import { formatDate } from "./utils/dateFormatter";
-import { formatCurrency } from "./utils/helpers";
+import { capitalize, formatCurrency } from "./utils/helpers";
 import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 
 function InvoicesList({ invoices }) {
   const navigate = useNavigate();
   const openInvoice = (id) => {
     navigate(`/invoice/${id}`);
   };
+
+  const isOverDue = (invoice) => {
+    return invoice.status === "sent" && invoice.dueAr < dayjs().format();
+  };
+
   return (
     <div className="table-responsive">
       {!invoices ? (
@@ -37,7 +43,30 @@ function InvoicesList({ invoices }) {
                 <td>
                   {formatDate(invoice.issuedAt, "D MMM YYYY", "YYYY-MM-DD")}
                 </td>
-                <td>{formatCurrency(invoice.subTotal)}</td>
+                <td>
+                  {/* TODO: Fix after adding subTotal getter to model, should be formatCurrency(total.subTotal) */}
+                  {formatCurrency(500)}
+                  {/* TODO: Fix after adding is taxTotal getter to model, should invoice.taxTotal && ... */}
+                  {!invoice && (
+                    <small>
+                      <br />
+                      {/* TODO: Fix after adding total getter to model, should be formatCurrency(total.total) */}
+                      {formatCurrency(500)}
+                    </small>
+                  )}
+                </td>
+                <td className="text-end">
+                  {isOverDue(invoice) ? (
+                    <i className="material-icons material-icons-round md-18 me-2 text-warning">
+                      warning
+                    </i>
+                  ) : invoice.status === "paid" ? (
+                    <i className="material-icons material-icons-round md-18 me-2 text-success">
+                      done
+                    </i>
+                  ) : null}
+                  {capitalize(invoice.status)}
+                </td>
               </tr>
             ))}
           </tbody>

@@ -13,3 +13,9 @@
 .react-datepicker__month-container {
   width: 100%;
 }
+
+.table > :not(caption) > * > * {
+  padding: 1.3125rem 1rem 0.6875rem !important;
+  background-color: white !important;
+  box-shadow: none !important;
+}
