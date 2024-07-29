@@ -1,5 +1,5 @@
 {
-  "name": "react-serverless-invoices",
+  "name": "flexibill",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,6 +13,7 @@
     "bootstrap": "^5.3.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
+    "react-context-orm": "^1.0.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3"
   },
